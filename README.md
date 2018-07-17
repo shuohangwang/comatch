@@ -15,6 +15,7 @@ Implementation of the model described in the ACL'18 short paper:
 ```
 sh preprocess.sh
 python main.lua --cuda
+```
 
 # Copyright
 Copyright 2015 Singapore Management University (SMU). All Rights Reserved.
