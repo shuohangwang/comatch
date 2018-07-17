@@ -14,7 +14,7 @@ Implementation of the model described in the ACL'18 short paper:
 ### Usage
 ```
 sh preprocess.sh
-python main.lua --cuda
+python main.py --cuda
 ```
 
 # Copyright
