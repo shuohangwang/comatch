@@ -1,10 +1,10 @@
 # comatch
-Implementation of the model described in the ACL short paper:
+Implementation of the model described in the ACL'18 short paper:
 - [A Co-Matching Model for Multi-choice Reading Comprehension](https://arxiv.org/abs/1806.04068) by Shuohang Wang, Mo Yu, Shiyu Chang, Jing Jiang
 
 ### Requirements
-- Pytorch 0.4
 - Python 3.6
+- Pytorch 0.4
 - NLTK
 
 ### Datasets
@@ -15,3 +15,6 @@ Implementation of the model described in the ACL short paper:
 ```
 sh preprocess.sh
 python main.lua --cuda
+
+# Copyright
+Copyright 2015 Singapore Management University (SMU). All Rights Reserved.
