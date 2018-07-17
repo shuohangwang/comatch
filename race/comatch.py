@@ -25,7 +25,7 @@ def masked_softmax(vector, seq_lens):
 class MatchNet(nn.Module):
     def __init__(self, mem_dim, dropoutP):
         super(MatchNet, self).__init__()
-        self.map_linear = nn.Linear(4*mem_dim, mem_dim)
+        self.map_linear = nn.Linear(2*mem_dim, 2*mem_dim)
         self.trans_linear = nn.Linear(mem_dim, mem_dim)
         self.drop_module = nn.Dropout(dropoutP)
 
@@ -38,7 +38,7 @@ class MatchNet(nn.Module):
         att_vec = att_norm.bmm(proj_q)
         elem_min = att_vec - proj_p
         elem_mul = att_vec * proj_p
-        all_con = torch.cat([att_vec,proj_p,elem_min,elem_mul], 2)
+        all_con = torch.cat([elem_min,elem_mul], 2)
         output = nn.ReLU()(self.map_linear(all_con))
         return output
 
@@ -81,7 +81,7 @@ class CoMatch(nn.Module):
         self.embs.weight.requires_grad = False
 
         self.encoder = MaskLSTM(self.emb_dim, self.mem_dim, dropoutP=self.dropoutP)
-        self.l_encoder = MaskLSTM(self.mem_dim*4, self.mem_dim, dropoutP=self.dropoutP)
+        self.l_encoder = MaskLSTM(self.mem_dim*8, self.mem_dim, dropoutP=self.dropoutP)
         self.h_encoder = MaskLSTM(self.mem_dim*2, self.mem_dim, dropoutP=0)
 
         self.match_module = MatchNet(self.mem_dim*2, self.dropoutP)
